@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1618324208 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\main.cpp
+	<level.h>
+	<bits/stdc++.h>
+
+1618324208 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\level.cpp
+	"Level.h"
+	<bits/stdc++.h>
+
+1618324208 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\level.h
+	<bits/stdc++.h>
+
