@@ -1,12 +1,37 @@
 # depslib dependency file v1.0
-1618324208 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\main.cpp
+1618871335 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\main.cpp
 	<level.h>
+	<Personnage.h>
+	<Objet.h>
 	<bits/stdc++.h>
 
-1618324208 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\level.cpp
+1618871989 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\level.cpp
 	"Level.h"
 	<bits/stdc++.h>
 
-1618324208 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\level.h
+1618871989 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\level.h
+	<bits/stdc++.h>
+
+1618869588 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\objet.cpp
+	"Objet.h"
+	<bits/stdc++.h>
+	"Soko.h"
+
+1618869588 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\objet.h
+	<bits/stdc++.h>
+
+1618868113 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\soko.cpp
+	"Soko.h"
+
+1618866587 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\soko.h
+
+1618872636 c:\users\skyllilolz\desktop\studying\projet\sokoban\include\personnage.h
+	"Objet.h"
+	<bits/stdc++.h>
+	<level.h>
+
+1618871824 source:c:\users\skyllilolz\desktop\studying\projet\sokoban\src\personnage.cpp
+	"Personnage.h"
+	"Objet.h"
 	<bits/stdc++.h>
 

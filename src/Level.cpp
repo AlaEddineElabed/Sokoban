@@ -32,7 +32,10 @@ void Level::setcol(int n){
 int Level::getcol(){
     return(col);
 }
+void Level::setcarte(vector<vector<char>> _){
+    carte = _;
 
+}
 vector<vector<char>> Level::getcarte(){
     return(carte);
 }

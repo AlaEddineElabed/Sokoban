@@ -26,6 +26,7 @@ class Level
         int getrow();
         void setcol(int);
         int getcol();
+        void setcarte(vector<vector<char>>);
         vector<vector<char>> getcarte();
         //creation du matrice carte on the spot(once program ikaml yetexecuta tetfase5, ma7atitelhesh save into txt)
         void createcarte();
