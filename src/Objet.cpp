@@ -3,7 +3,7 @@
 using namespace std;
 
 //kbal implémentation nthabtou shih wale
-#include "Soko.h"
+#include "Game.h"
 
 Objet::Objet()
 {

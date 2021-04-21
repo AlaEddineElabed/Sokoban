@@ -34,15 +34,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Game.h" />
 		<Unit filename="include/Level.h" />
 		<Unit filename="include/Objet.h" />
 		<Unit filename="include/Personnage.h" />
-		<Unit filename="include/Soko.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Level.cpp" />
 		<Unit filename="src/Objet.cpp" />
 		<Unit filename="src/Personnage.cpp" />
-		<Unit filename="src/Soko.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

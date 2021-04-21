@@ -1,0 +1,18 @@
+ROLE OF: ALA
+1) b ---> d : B //
+5) Saves d //
+
+
+
+
+
+ROLE OF: KHALIL
+3) Level Initialiser //
+4) Get out of Mainloop //
+
+
+
+
+
+ROLE OF: AZIZ
+2) Level Finisher //

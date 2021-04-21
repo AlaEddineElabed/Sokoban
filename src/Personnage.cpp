@@ -2,7 +2,8 @@
 #include "Objet.h"
 #include <bits/stdc++.h>
 using namespace std;
-
+Personnage::Personnage() : Objet(){
+}
 Personnage::Personnage(Level lvl) : Objet() {
 
     for (int i = 0; i < lvl.getcarte().size(); i++) {
@@ -62,74 +63,131 @@ cout << "(" << x << "," << y << ")" << endl;
 }
 
 
-void Personnage::up(Level &lvl){
-    if (y>0)  {
+//void Personnage::up(Level &lvl){
+//    if (y>0)  {
+//
+//            if (lvl.getcarte()[y-1][x] == '.' ){ //
+//
+//                lvl.getcarte()[y-1][x] = 'J';
+//                lvl.getcarte()[y-1][x] = '.';
+//                y--;
+//    }
+//    }
+//    if (y>1) {
+//            cout<<" hello there" ;
+//    if ( (lvl.getcarte()[y-1][x] == 'b') && (lvl.getcarte()[y-2][x] == '.') ) {
+//        lvl.getcarte()[y-1][x] = 'J';
+//        lvl.getcarte()[y-2][x] = 'b';
+//        lvl.getcarte()[y][x] = '.';
+//        y--;
+//    }}
 
-            if (lvl.getcarte()[y-1][x] == '.' ){ //
 
-                lvl.getcarte()[y-1][x] = 'J';
-                lvl.getcarte()[y-1][x] = '.';
-                y--;
+//}
+
+
+void Personnage::up(vector<vector<char>> &mapeu){
+
+            if (mapeu[x-1][y] == '.' ){ //
+                //cout << mapeu[x][y] << endl;
+                 //mapeu[0][0] = 'K';
+                mapeu[x-1][y] = 'J';
+                mapeu[x][y] = '.';
+                x--;
     }
-    }
-    if (y>1) {
-            cout<<" hello there" ;
-    if ( (lvl.getcarte()[y-1][x] == 'b') && (lvl.getcarte()[y-2][x] == '.') ) {
-        lvl.getcarte()[y-1][x] = 'J';
-        lvl.getcarte()[y-2][x] = 'b';
-        lvl.getcarte()[y][x] = '.';
-        y--;
-    }}
 
+    else if ( (mapeu[x-1][y] == 'b') && (mapeu[x-2][y] == '.') ) {
+        mapeu[x-1][y] = 'J';
+        mapeu[x-2][y] = 'b';
+        mapeu[x][y] = '.';
+        x--;
+    }
 
 }
 
+void Personnage::down(vector<vector<char>> &mapeu){
 
-void Personnage::upp(vector<vector<char>> &mapeu){
-    if (y>0)  {
 
-            if (mapeu[y-1][x] == '.' ){ //
+            if (mapeu[x+1][y] == '.' ){
 
-                mapeu[y-1][x] = 'J';
-                mapeu[y-1][x] = '.';
+                mapeu[x][y] = '.';
+                mapeu[x+1][y] = 'J';
+                x++;
+
+    }
+
+            cout<<" hello there" ;
+    if ( (mapeu[x+1][y] == 'b') && (mapeu[x+2][y] == '.') ) {
+        mapeu[x+1][y] = 'J';
+        mapeu[x+2][y] = 'b';
+        mapeu[x][y] = '.';
+        x++;
+    }
+}
+
+void Personnage::right(vector<vector<char>> &mapeu){
+
+
+            if (mapeu[x][y+1] == '.' ){
+                mapeu[x][y] = '.';
+                mapeu[x][y+1] = 'J';
+                y++;
+    }
+
+            cout<<" hello there" ;
+    if ( (mapeu[x][y+1] == 'b') && (mapeu[x][y+2] == '.') ) {
+        mapeu[x][y+1] = 'J';
+        mapeu[x][y+2] = 'b';
+        mapeu[x][y] = '.';
+        y++;
+    }
+}
+
+
+void Personnage::left(vector<vector<char>> &mapeu){
+
+
+            if (mapeu[x][y-1] == '.' ){
+                mapeu[x][y] = '.';
+                mapeu[x][y-1] = 'J';
                 y--;
     }
-    }
-    if (y>1) {
+
             cout<<" hello there" ;
-    if ( (mapeu[y-1][x] == 'b') && (mapeu[y-2][x] == '.') ) {
-        mapeu[y-1][x] = 'J';
-        mapeu[y-2][x] = 'b';
-        mapeu[y][x] = '.';
+    if ( (mapeu[x][y-1] == 'b') && (mapeu[x][y-2] == '.') ) {
+        mapeu[x][y-1] = 'J';
+        mapeu[x][y-2] = 'b';
+        mapeu[x][y] = '.';
         y--;
-    }}
+    }
 }
 
 
 
-void Personnage::move(){
+char Personnage::move(vector<vector<char>>& mapeu){
 
 
 	char c ;
-	cout<<'Your move'<<endl;
-	cin>> c ;
+	cout<<"Your move"<<endl;
+	cin >> c ;
 	switch(c)
 		{
 		case 'z':
-			y--;
+			up(mapeu);
 			break;
 
 		case 's':
-			y++;
+			down(mapeu);
 			break;
 
 		case 'q':
-			x--;
+			left(mapeu);
 			break;
 
 		case 'd':
-			x++;
+			right(mapeu);
 			break;
 		}
 
+        return('h');
 }
