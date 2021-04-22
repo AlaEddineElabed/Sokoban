@@ -94,4 +94,5 @@ void Level::affichagecarte() {
 }
 
 void Level::initialiserniveau(){
+    loadcarte();
 }

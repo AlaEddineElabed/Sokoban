@@ -8,10 +8,10 @@
 // Perso Hérite d'objet
 class Personnage : public Objet
 {
-   protected :
+   private :
 
-        int dest_row ;
-        int dest_col ;
+
+        bool indestination ;
    public:
         Personnage();
        Personnage(Level);
@@ -22,16 +22,13 @@ class Personnage : public Objet
    //Debug
        void debug();
     //Mouvma
-
+       void setindestination(bool);
+       bool getindestination();
        void up(vector<vector<char>>&);
        void down(vector<vector<char>>&);
        void left(vector<vector<char>>&);
        void right(vector<vector<char>>&);
        char move(vector<vector<char>>&);
-   //Vérifie ken inajm yitharek wale
-       bool verif(int);
-   //Destiantion a choisir
-       void setDestination(int c) ;
 
 };
 #endif

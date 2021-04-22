@@ -13,26 +13,28 @@ void Game::testing() {
 //    cout << lvl.getcarte()[i][0] << " ";
 //    cout << "hello";
 //    }
-    p.debug();
+//    p.debug();
     //lvl.loadcarte();
+    bool b;
+    b=p.getindestination();
     Personnage g(lvl);
     p=g;
-    lvl.affichagecarte();
+    p.setindestination(b);
+
+    //lvl.affichagecarte();
     vector<vector<char>> testmap;
     //testmap is the matrix you can use as an example while working,
     // it the the representation of level Example1.txt in a vector<vector<char>>
     testmap=lvl.getcarte();
     //Personnage p(lvl);
-    p.debug();
-
+   // p.debug();
 
     p.move(testmap);
-    /*for (int i = 0; i < testmap.size(); i++) {
-        for (int j = 0; j < testmap[0].size(); j++)
-            cout << testmap[i][j] << " ";
-        cout << endl;
-    }*/
+
+
+
     cout << endl;
+
     lvl.setcarte(testmap);
     lvl.affichagecarte();
 
@@ -40,16 +42,32 @@ void Game::testing() {
 
 }
 
+int Game::NombreDe_b(){
+    int ct=0 ;
+    for (int i = 0; i < lvl.getcarte().size(); i++) {
+        for (int j = 0; j <  lvl.getcarte()[1].size(); j++){
+            if (lvl.getcarte()[i][j] == 'b')
+               ct++ ;
+
+            }
+            }
+            return ct ;
+
+
+}
+
 void Game::mainloop(){
 char s;
 s='.';
-
-
-while (1==1) {
+p.setindestination(false);
+lvl.affichagecarte();
+int b ;
+b=NombreDe_b() ;
+cout<< b ;
+while (b>0 ) {
     testing();
-
+    b=NombreDe_b();
     }
-
 }
 
 Game::~Game()

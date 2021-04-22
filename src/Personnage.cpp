@@ -20,108 +20,148 @@ Personnage::Personnage(int x1 , int y1) : Objet() {
     x=x1;
     y=y1;
 }
-//Destination ili bch yimchilha
-void Personnage::setDestination(int c)
-{
-	switch(c)
-		{
-		case 'z':
-			dest_row--;
-			break;
 
-		case 's':
-			dest_row++;
-			break;
-
-		case 'q':
-			dest_col--;
-			break;
-
-		case 'd':
-			dest_col++;
-			break;
-		}
-}
-
-
-bool Personnage::verif(int c)
-{
-
-	setDestination(c);
-	//Objet ob(dest_col , dest_row);//error khater mazelt aamlet constructeur fil objet.cppge
-
-//vérifi ken il destination ili khtarha feha mur wala feha box w mbaaid lbox fama mur wala box akher
-	//if(ob.Is_Mur() )
-
-                //return true;
-
-	//return false;
-}
 
 void Personnage::debug(){
 cout << "(" << x << "," << y << ")" << endl;
 }
 
-
-//void Personnage::up(Level &lvl){
-//    if (y>0)  {
-//
-//            if (lvl.getcarte()[y-1][x] == '.' ){ //
-//
-//                lvl.getcarte()[y-1][x] = 'J';
-//                lvl.getcarte()[y-1][x] = '.';
-//                y--;
-//    }
-//    }
-//    if (y>1) {
-//            cout<<" hello there" ;
-//    if ( (lvl.getcarte()[y-1][x] == 'b') && (lvl.getcarte()[y-2][x] == '.') ) {
-//        lvl.getcarte()[y-1][x] = 'J';
-//        lvl.getcarte()[y-2][x] = 'b';
-//        lvl.getcarte()[y][x] = '.';
-//        y--;
-//    }}
-
-
-//}
-
+void Personnage::setindestination(bool f){
+    indestination=f;
+}
+bool Personnage::getindestination(){
+    return(indestination);
+}
 
 void Personnage::up(vector<vector<char>> &mapeu){
 
-            if (mapeu[x-1][y] == '.' ){ //
-                //cout << mapeu[x][y] << endl;
-                 //mapeu[0][0] = 'K';
-                mapeu[x-1][y] = 'J';
-                mapeu[x][y] = '.';
-                x--;
+    if (mapeu[x-1][y] == '.' ){
+        //cout << mapeu[x][y] << endl;
+        //mapeu[0][0] = 'K';
+        mapeu[x-1][y] = 'J';
+        // mapeu[x][y] = '.';
+        //cout << getindestination() << endl;
+        if (getindestination()){
+            mapeu[x][y] = 'd';
+            setindestination(false);
+        }
+        else
+            mapeu[x][y] = '.';
+        x--;
     }
-
     else if ( (mapeu[x-1][y] == 'b') && (mapeu[x-2][y] == '.') ) {
         mapeu[x-1][y] = 'J';
         mapeu[x-2][y] = 'b';
-        mapeu[x][y] = '.';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
         x--;
+    }
+    else if (mapeu[x-1][y] == 'd' ){
+
+                mapeu[x-1][y] = 'J';
+                //mapeu[x][y] = '.';
+                if (getindestination()){
+                    mapeu[x][y] = 'd';setindestination(false);
+                }
+                else{
+                    mapeu[x][y] = '.';//cout<< "shouldntcomehere" << endl;
+                }
+                x--;
+                //Save
+                setindestination(true);
+                //cout << "indestinationvalue " << getindestination() << endl;
+    }
+     else if ( (mapeu[x-1][y] == 'B') && (mapeu[x-2][y] == '.') ) {
+        mapeu[x-1][y] = 'J';
+        mapeu[x-2][y] = 'b';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        x--;
+        //Save
+        setindestination(true);
+    }
+    else if ( (mapeu[x-1][y] == 'b') && (mapeu[x-2][y] == 'd') ) {
+        mapeu[x-1][y] = 'J';
+        mapeu[x-2][y] = 'B';
+        //mapeu[x][y] = '.';
+
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+                else             mapeu[x][y] = '.';
+        x--;
+    }
+     else if ( (mapeu[x-1][y] == 'B') && (mapeu[x-2][y] == 'd') ) {
+        mapeu[x-1][y] = 'J';
+        mapeu[x-2][y] = 'B';
+        //mapeu[x][y] = '.';
+
+                if (getindestination()) {mapeu[x][y] = 'd';}
+                else             mapeu[x][y] = '.';
+        x--;
+        //save
+         setindestination(true);
     }
 
 }
 
-void Personnage::down(vector<vector<char>> &mapeu){
-
-
-            if (mapeu[x+1][y] == '.' ){
-
-                mapeu[x][y] = '.';
-                mapeu[x+1][y] = 'J';
-                x++;
-
-    }
-
-            cout<<" hello there" ;
-    if ( (mapeu[x+1][y] == 'b') && (mapeu[x+2][y] == '.') ) {
+void Personnage::down(vector<vector<char>> &mapeu)
+{
+    if (mapeu[x+1][y] == '.' )
+    {
+        //mapeu[x][y] = '.';
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
         mapeu[x+1][y] = 'J';
-        mapeu[x+2][y] = 'b';
-        mapeu[x][y] = '.';
         x++;
+    }
+    else if ( (mapeu[x+1][y] == 'b') && (mapeu[x+2][y] == '.') )
+    {
+        mapeu[x+2][y] = 'b';
+        mapeu[x+1][y] = 'J';
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        //mapeu[x][y] = '.';
+        x++;
+    }
+    else if (mapeu[x+1][y] == 'd' )
+    {
+        mapeu[x][y] = '.';
+        mapeu[x+1][y] = 'J';
+        x++;
+        //save
+         setindestination(true);
+    }
+    else if ( (mapeu[x+1][y] == 'b') && (mapeu[x+2][y] == 'd') )
+    {
+        mapeu[x+2][y] = 'B';
+        mapeu[x+1][y] = 'J';
+        //mapeu[x][y] = '.';
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        x++;
+    }
+    else if ( (mapeu[x+1][y] == 'B') && (mapeu[x+2][y] == '.') )
+    {
+        mapeu[x+2][y] = 'b';
+        mapeu[x+1][y] = 'J';
+        //mapeu[x][y] = '.';
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        x++;
+        //save
+         setindestination(true);
+    }
+    else if ( (mapeu[x+1][y] == 'B') && (mapeu[x+2][y] == 'd') )
+    {
+        mapeu[x+2][y] = 'B';
+        mapeu[x+1][y] = 'J';
+        //mapeu[x][y] = '.';
+          if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        x++;
+        //save
+        setindestination(true);
     }
 }
 
@@ -129,17 +169,59 @@ void Personnage::right(vector<vector<char>> &mapeu){
 
 
             if (mapeu[x][y+1] == '.' ){
-                mapeu[x][y] = '.';
                 mapeu[x][y+1] = 'J';
+                //mapeu[x][y] = '.';
+                if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
                 y++;
     }
 
-            cout<<" hello there" ;
-    if ( (mapeu[x][y+1] == 'b') && (mapeu[x][y+2] == '.') ) {
-        mapeu[x][y+1] = 'J';
+    else if ( (mapeu[x][y+1] == 'b') && (mapeu[x][y+2] == '.') ) {
         mapeu[x][y+2] = 'b';
-        mapeu[x][y] = '.';
+        mapeu[x][y+1] = 'J';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
         y++;
+    }
+    else if ( (mapeu[x][y+1] == 'b') && (mapeu[x][y+2] == 'd') ) {
+        mapeu[x][y+2] = 'B';
+        mapeu[x][y+1] = 'J';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y++;
+    }
+    else if ( (mapeu[x][y+1] == 'B') && (mapeu[x][y+2] == '.') ) {
+        mapeu[x][y+2] = 'b';
+        mapeu[x][y+1] = 'J';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y++;
+        //save
+        setindestination(true);
+    }
+    else if ( (mapeu[x][y+1] == 'B') && (mapeu[x][y+2] == 'd') ) {
+        mapeu[x][y+2] = 'B';
+        mapeu[x][y+1] = 'J';
+        //mapeu[x][y] = '.';
+        if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y++;
+        //save
+        setindestination(true);
+    }
+
+     else if (mapeu[x][y+1] == 'd' ){
+                mapeu[x][y+1] = 'J';
+                //mapeu[x][y] = '.';
+                if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+                y++;
+
+        //save
+        setindestination(true);
     }
 }
 
@@ -148,17 +230,57 @@ void Personnage::left(vector<vector<char>> &mapeu){
 
 
             if (mapeu[x][y-1] == '.' ){
-                mapeu[x][y] = '.';
+                //mapeu[x][y] = '.';
+                 if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
                 mapeu[x][y-1] = 'J';
                 y--;
     }
 
-            cout<<" hello there" ;
-    if ( (mapeu[x][y-1] == 'b') && (mapeu[x][y-2] == '.') ) {
-        mapeu[x][y-1] = 'J';
+    else if ( (mapeu[x][y-1] == 'b') && (mapeu[x][y-2] == '.') ) {
         mapeu[x][y-2] = 'b';
-        mapeu[x][y] = '.';
+        mapeu[x][y-1] = 'J';
+        //mapeu[x][y] = '.';
+         if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
         y--;
+    }
+    else if ( (mapeu[x][y-1] == 'b') && (mapeu[x][y-2] == 'd') ) {
+        mapeu[x][y-2] = 'B';
+        mapeu[x][y-1] = 'J';
+        //mapeu[x][y] = '.';
+         if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y--;
+    }
+    else if ( (mapeu[x][y-1] == 'B') && (mapeu[x][y-2] == '.') ) {
+        mapeu[x][y-2] = 'b';
+        mapeu[x][y-1] = 'J';
+        //mapeu[x][y] = '.';
+         if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y--;
+        //save
+         setindestination(true);
+    }
+    else if ( (mapeu[x][y-1] == 'B') && (mapeu[x][y-2] == 'd') ) {
+        mapeu[x][y-2] = 'B';
+        mapeu[x][y-1] = 'J';
+        //mapeu[x][y] = '.';
+         if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+        y--;
+        //save
+         setindestination(true);
+    }
+    else if (mapeu[x][y-1] == 'd' ){
+                //mapeu[x][y] = '.';
+                 if (getindestination()) {mapeu[x][y] = 'd';setindestination(false);}
+        else             mapeu[x][y] = '.';
+                mapeu[x][y-1] = 'J';
+                y--;
+                //save
+                setindestination(true);
     }
 }
 
@@ -167,9 +289,11 @@ void Personnage::left(vector<vector<char>> &mapeu){
 char Personnage::move(vector<vector<char>>& mapeu){
 
 
+    //cout << getindestination();
 	char c ;
-	cout<<"Your move"<<endl;
+	cout<<"Your move: ";
 	cin >> c ;
+	cout << endl;
 	switch(c)
 		{
 		case 'z':
@@ -187,7 +311,10 @@ char Personnage::move(vector<vector<char>>& mapeu){
 		case 'd':
 			right(mapeu);
 			break;
+//        case 'd':
+//			right(mapeu);
+//			break;
 		}
 
-        return('h');
+    return(c);
 }

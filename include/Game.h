@@ -15,6 +15,7 @@ class Game
         Game(Level);
         virtual ~Game();
         void testing();
+        int NombreDe_b();
         void mainloop();
 };
 

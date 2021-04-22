@@ -42,12 +42,3 @@ class Objet
 
 };
 #endif
-
-
-
-
-
-
-
-
-
