@@ -39,10 +39,6 @@ All levels are written in a .txt file using the notations presented in class Cel
 This page shows the rules of the game.
 
 
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
-
 ## Technology used
 
 Sokoban uses a number of open source projects to work properly:
@@ -51,4 +47,7 @@ Sokoban uses a number of open source projects to work properly:
 - SFML - The library needed for the graphical user interface of the game.
 - Codeblocks - the IDE Used in the development of the game.
 - Git - Version control system used throughout the development of the game.
-
+## Future Work
+- Add More avatars the player can choose from
+- Add More Levels
+- Add an in-game currency as an entertaining way for the player to unlock more levels/avatars
